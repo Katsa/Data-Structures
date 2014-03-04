@@ -20,26 +20,54 @@ public Mark getMark(int number) {
 
 public boolean hasWin() {
 	boolean over = false;
-	//sideways
-	if (board[0].toString().equals(board[1].toString()) && board[0].toString().equals(board[2].toString())){
-		over = true;
+	
+	
+	// sideways and down
+	for(int i = 0; i < 9; i+=3) {
+		boolean match = false;
+		
+		if(board[i].toString().equals(board[i+1].toString())) {
+			match = true;
+		}
+		if(match == true) {
+			if(board[i].toString().equals(board[i+2].toString())) {
+				over = true;
+			}
+		}
 	}
-	if (board[3].toString().equals(board[4].toString()) && board[3].toString().equals(board[5].toString())){
-		over = true;
+	for(int i = 0; i < 3; i++) {
+		boolean match = false;
+		
+		if(board[i].toString().equals(board[i+3].toString())) {
+			match = true;
+		}
+		if(match == true) {
+			if(board[i].toString().equals(board[i+6].toString())) {
+				over = true;
+			}
+		}
 	}
-	if (board[6].toString().equals(board[7].toString()) && board[6].toString().equals(board[8].toString())){
-		over = true;
-	}
-	//down
-	if (board[0].toString().equals(board[3].toString()) && board[0].toString().equals(board[6].toString())){
-		over = true;
-	}
-	if (board[1].toString().equals(board[4].toString()) && board[1].toString().equals(board[7].toString())){
-		over = true;
-	}
-	if (board[2].toString().equals(board[5].toString()) && board[2].toString().equals(board[8].toString())){
-		over = true;
-	}
+	
+//	//sideways
+//	if (board[0].toString().equals(board[1].toString()) && board[0].toString().equals(board[2].toString())){
+//		over = true;
+//	}
+//	if (board[3].toString().equals(board[4].toString()) && board[3].toString().equals(board[5].toString())){
+//		over = true;
+//	}
+//	if (board[6].toString().equals(board[7].toString()) && board[6].toString().equals(board[8].toString())){
+//		over = true;
+//	}
+//	//down
+//	if (board[0].toString().equals(board[3].toString()) && board[0].toString().equals(board[6].toString())){
+//		over = true;
+//	}
+//	if (board[1].toString().equals(board[4].toString()) && board[1].toString().equals(board[7].toString())){
+//		over = true;
+//	}
+//	if (board[2].toString().equals(board[5].toString()) && board[2].toString().equals(board[8].toString())){
+//		over = true;
+//	}
 	//diagonal
 	if (board[0].toString().equals(board[4].toString()) && board[0].toString().equals(board[8].toString())){
 		over = true;
@@ -51,13 +79,19 @@ public boolean hasWin() {
 }
 
 public boolean gameOver() {
-	for(int i = 0; i < board.length(); i++) {
-		int count = 0;
+	
+	int count = 0;
+	for(int i = 0; i < board.length; i++) {
+		
 		if(board[i].isEmpty() == false) {
 			count += 1;
 		}
 	}
 	if(count == 9) {
+		over = true;
+	}
+	
+	if(hasWin() == true) {
 		over = true;
 	}
 
