@@ -63,6 +63,9 @@ public class BinaryTree<E> {
 	public boolean isRoot(){
 		return parent == null;
 	}
+	public E visit(BinaryTree<E> tree){
+		return tree.data();
+	}
 		
 	// ---- some more interesting methods
 	public int height(){

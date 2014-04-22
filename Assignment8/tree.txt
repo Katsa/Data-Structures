@@ -1,7 +1,7 @@
 QDoes it moo?
 QIs it bigger than a breadbox?
 Agnat
-QDoes it live in water?
+Qdoes it live in the water?
 Aelephant
 Awhale
 Acow

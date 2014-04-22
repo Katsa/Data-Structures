@@ -14,7 +14,7 @@ public class AnimalTreeTest {
 	@Test
 	public void AnimalGameTest(){
 		AnimalGame test = new AnimalGame();
-		test.play("text.txt", "text.txt");
+		test.play("tree.txt", "tree.txt");
 		
 	}
 }
