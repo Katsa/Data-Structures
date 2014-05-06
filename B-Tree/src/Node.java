@@ -10,7 +10,7 @@
 	public E[] data;
  	public Node[] children;
  	
- 	public Node (E[] data, Node[] children) {
+ 	public Node (E[] data, int maxChildren) {
 
  		this.data = data;
  		children = new Node[maxChildren];
@@ -24,6 +24,10 @@
  	public void setData(E b) {
  		data = b;
  	}
+ 	get parent
+
+ 	get size
+ 	contains 
  	
 
 }

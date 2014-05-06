@@ -18,11 +18,16 @@ public class BTree<E extends Comparable> {
 	/**
 	 * inserts the element you passed at the correct location. Also will split up the array of elements if it surpasses maxChildren
 	 */
-	public void insert() {
-		
+	public void insert(E value) {
+		if(height == 0) {
+			for(int i =0; i<root.; i++) {
+
+			}
+		}
 	}
 
 	
+
 	/**
 	 * Steps through the tree until it finds the object you are looking for, or not.
 	 * @return
@@ -46,40 +51,17 @@ public class BTree<E extends Comparable> {
 	}
 	
 	/**
-	 * removes the element you pass, and returns it
-	 * @return
-	 */
-	public E remove(E value) {
-		
-	}
-	
-	/**
 	 * helper method called in insert. Splits the node if the size is larger then maxChildren
 	 */
 	private void split(Node current) {
-		Node newNode = new Node(new E[maxChildren], maxChildren/2);
+		Node newNode = new Node(E[maxChildren], maxChildren/2);
 		//current. = maxChildren/2;
 		for(int i = 0; i < maxChildren/2; i++) {
 			newNode.children[i] = current.children[maxChildren/2 + i];
 		}
 	}
 
-	/**
-	 * helper method that joins two nodes if one of them is going to be smaller then maxChildren/2
-	 */
-	private void join(Node one, Node two) {
-		Node newNode = new Node(new E[maxChildren], maxChildren/2);
-		int first = 0;
-		for(int i = 0; i < maxChildren; i++) {
-			newNode.children[i] = one.children[i];
-			first ++;
-		}
-
-		for(int i = 0; i < maxChildren/2; i++) {
-			newNode.children[i+first] = two.children[i];
-		}
-		
-	}
+	
 	/**
 	 * Helper method that checks weather or not the specific node is empty or not
 	 * @return
@@ -96,12 +78,5 @@ public class BTree<E extends Comparable> {
 		return numNodes;
 	}
 	
-	/**
-	 * Helper method that returns the height of the BTree
-	 * @return
-	 */
-	public int getHeight() {
-		return height;
-	}
 	
 }
