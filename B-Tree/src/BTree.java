@@ -4,67 +4,74 @@
  *
  *
  */
-public class BTree<Key extends Comparable<Key>, Value> {
-	private static final int maxChildren = 4;
+public class BTree<E extends Comparable> {
 	
+	private int maxChildren;
 	private Node root;
 	private int height;
-	private int pairs;
+	private int numNodes;
 	
-	//private Values[] children = new Values[maxChildren];
+	public BTree(int maxChildren){
+		root = new Node(new E[maxChildren], maxChildren);
+	}
 	
-	public BTree() {
-		root = new Node(0);
+	/**
+	 * inserts the element you passed at the correct location. Also will split up the array of elements if it surpasses maxChildren
+	 */
+	public void insert() {
+		
+	}
+	/**
+	 * helper method called in insert. Splits the node if the size is larger then maxChildren
+	 */
+	private void split() {
 		
 	}
 	
-	public int size() {
-		return pairs;
+	/**
+	 * Steps through the tree until it finds the object you are looking for, or not.
+	 * @return
+	 */
+	public boolean contains(E value) {
+		
 	}
 	
-	public int height() {
+	/**
+	 * removes the element you pass, and returns it
+	 * @return
+	 */
+	public E remove(E value) {
+		
+	}
+	
+	/**
+	 * helper method that joins two nodes if one of them is going to be smaller then maxChildren/2
+	 */
+	private void join() {
+		
+	}
+	/**
+	 * Helper method that checks weather or not the specific node is empty or not
+	 * @return
+	 */
+	public boolean isEmpty(){
+		return false;
+		
+	}
+	/**
+	 * Helper method that returns the size of the BTree
+	 * @return
+	 */
+	public int getNumNodes() {
+		return numNodes;
+	}
+	
+	/**
+	 * Helper method that returns the height of the BTree
+	 * @return
+	 */
+	public int getHeight() {
 		return height;
 	}
 	
-	public Value get(Key key) {
-		
-		return search(root,key, height);
-	}
-	public Value search(Node n, Key key, int ht) {
-		Entries[] children = n.children;
-		
-		//external node
-		if (ht == 0) {
-			for(int i == 0; i< n.data; i++) {
-				if(equal(key, children[i].key)) {
-					return (Value) children[i].value;
-				}
-			}
-		}
-		//internal node
-		else {
-			for(int i == 0; i < n.data ; i++) {
-				if(i+1 == n.data || smaller(key, children[i+1].key)) {
-					return search(children[i].nextNode, key, ht-1);
-				}
-			}
-		}
-	}
-	
-	public Node split(Node n) {
-		int halfChildren = maxChildren/2;
-		Node current = new Node(halfChildren);
-		n.data = halfChildren;
-		for(int i = 0; i < halfChildren; i++) {
-			
-		}
-	}
-	
-	public boolean equal(Comparable c1, Comparable c2) {
-		return c1.compareTo(c2) == 0;
-	}
-	
-	public boolean smaller(Comparable c1, Comparable c2) {
-		return c1.compareTo(c2) < 0;
-	}
 }
