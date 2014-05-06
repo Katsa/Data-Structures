@@ -5,30 +5,97 @@
 
  import java.lang.reflect.Array;
  import java.util.Arrays;
- public class Node<E extends Comparable <E>> {
+
+ public class Node {
 	
-	public E[] data;
- 	public Node[] children;
- 	
- 	public Node (E[] data, int maxChildren) {
+	public static final int order = 4;
 
- 		this.data = data;
- 		children = new Node[maxChildren];
- 	}
- 	
- 	public E getData(int location) {
- 	
- 		return data[location];
- 	}
- 	
- 	public void setData(E b) {
- 		data = b;
- 	}
- 	get parent
+	private Entry[] entries;
+	private Node[] children;
+	private Node parent;
+	private int numEntries;
 
- 	get size
- 	contains 
- 	
+	public Node() {
+		entries = new Entry[order -1];
+		children = new Node[order];
+		numEntries = 0;
+		parent = null;
+	}
+
+	public Node getChild(int numChild) {
+		return children[numChild];
+	}
+
+	public Node getParent() {
+		return parent;
+	}
+
+	public boolean isLeaf() {
+		return (children[0] == null) ? true : false ;
+	}
+
+	public boolean isFull() {
+		return(numEntries == order - 1) ? true :false;
+	}
+
+	public getNumEntries() {
+		return numEntries;
+	}
+
+	public getData(int location) {
+		return entries[location];
+	}
+
+	public void addChild(int numChild, Node child) {
+		children[numChild] = child;
+		if (child != null) {
+			child.parent = this;
+		}
+	}
+
+	public Node removeChild(int numChild) {
+		Node temp = children[numChild];
+		children[numChild] = null;
+		return temp;
+	}
+
+	public int search(long value) {
+		for(int i=0; i<order-1; i++) {
+			if(entries[i] == null) {
+				break
+			}
+			else if (entries[i] == value) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public int insert(Entry newEntry) {
+		if (!isFull()) {
+			long newKey = newEntry.data;
+			numEntries++;
+
+			for (int i = order - 2; i >=0; i--) {
+				if (entries[i] == null) {
+					continue;
+				}
+
+				long current = entries[i].data;
+				if (current > newKey) {
+					entries[i+1] = entries[i];
+				}
+				else {
+					items[i+1] = newEntry;
+					return i+1;
+				}
+			}
+			entries[0] = newEntry;
+			return 0;
+		}
+		return -1;
+	}
+
 
 }
 	
