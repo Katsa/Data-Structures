@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author gkatsaounis, dborge
+ *
+ */
 public class Entries {
 	public long data;
 	public Entries() {

@@ -1,8 +1,17 @@
+/**
+ * 234 tree 
+ * @author gkatsaounis, dborge
+ *
+ */
 public class Tree {
 
 	private Node root;
 
-
+	/**
+	 * returns the node where the next chid would be
+	 * @param current
+	 * @return the location of the next child
+	 */
 	public Node getNextChild(Node current) {
 		int numEntries = current.getNumEntries();
 		int i;
@@ -13,7 +22,11 @@ public class Tree {
 		}
 		return current.getChild(i);
 	}
-
+	/**
+	 * inserts the value into the tree
+	 * Thre are a few issues with insert
+	 * @param value
+	 */
 	public void insert(long value) {
 		Node current = root;
 		Entries newEntry = new Entries();
@@ -34,7 +47,11 @@ public class Tree {
 		}
 	}
 	
-public void split(Node current) {
+	/**
+	 * Splits the nodewhen it is necessary when something is inserted and the enry is full.
+	 * @param current
+	 */
+	public void split(Node current) {
         
         Entries B,C;
         Node parent, child2, child3;
