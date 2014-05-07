@@ -10,13 +10,13 @@
 	
 	public static final int order = 4;
 
-	private Entry[] entries;
+	private Entries[] entries;
 	private Node[] children;
 	private Node parent;
 	private int numEntries;
 
 	public Node() {
-		entries = new Entry[order -1];
+		entries = new Entries[order -1];
 		children = new Node[order];
 		numEntries = 0;
 		parent = null;
@@ -38,11 +38,11 @@
 		return(numEntries == order - 1) ? true :false;
 	}
 
-	public getNumEntries() {
+	public int getNumEntries() {
 		return numEntries;
 	}
 
-	public getData(int location) {
+	public Entries getData(int location) {
 		return entries[location];
 	}
 
@@ -62,16 +62,16 @@
 	public int search(long value) {
 		for(int i=0; i<order-1; i++) {
 			if(entries[i] == null) {
-				break
+				break;
 			}
-			else if (entries[i] == value) {
+			else if (entries[i].data == value) {
 				return i;
 			}
 		}
 		return -1;
 	}
 
-	public int insert(Entry newEntry) {
+	public int insert(Entries newEntry) {
 		if (!isFull()) {
 			long newKey = newEntry.data;
 			numEntries++;
@@ -86,7 +86,7 @@
 					entries[i+1] = entries[i];
 				}
 				else {
-					items[i+1] = newEntry;
+					entries[i+1] = newEntry;
 					return i+1;
 				}
 			}
@@ -95,6 +95,14 @@
 		}
 		return -1;
 	}
+	
+	public Entries remove() {
+        // get biggest item from ordered array
+        Entries deletedItem = entries[numEntries-1];
+        entries[numEntries-1] = null;
+        numEntries--;
+        return deletedItem;
+    }
 
 
 }
