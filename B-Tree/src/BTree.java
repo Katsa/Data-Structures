@@ -1,75 +1,82 @@
-public class Tree {
-
+/**
+ * 
+ * @author gkatsaounis, dborge
+ *
+ *
+ */
+public class BTree<E extends Comparable> {
+	
+	private int maxChildren;
 	private Node root;
+	private int height;
+	private int numNodes;
+	
+	public BTree(int maxChildren){
+		root = new Node(new E[maxChildren], maxChildren);
+	}
+	
+	/**
+	 * inserts the element you passed at the correct location. Also will split up the array of elements if it surpasses maxChildren
+	 */
+	public void insert(E value) {
+		if(height == 0) {
+			for(int i =0; i<root.; i++) {
 
-
-	public Node getNextChild(Node current) {
-		int numEntries = current.getNumEntries();
-		int i;
-		for (i =0; i <numEntries; i++) {
-			if (current.getData(i).data > value) {
-				return current.getChild(i);
 			}
 		}
-		return current.getChild(i);
 	}
 
-	public void insert(long value) {
-		Node current = root;
-		Entries newEntry = new Entries();
-		//newEntry.insert(value);
+	
 
-		while(true) {
-			if (current.isFull()) {
-				split(current);
-				Node currentNode = current.getParent();
-			} 
-			else if(current.isLeaf()) {
-				break;
+	/**
+	 * Steps through the tree until it finds the object you are looking for, or not.
+	 * @return
+	 */
+	public boolean contains(E value) {
+		if(height == 0) {
+			for(int i = 0; i < maxChildren; i++) { //could go out of bounds. the bound of i is meh
+				if(root.getData(i).compareTo(value) == 0) {
+					return true;
+				}
 			}
-			else {
-				current = getNextChild(current);
+			return false;
+		}
+		else {
+			for(int i = 0; i < maxChildren; i++) {
+				if(root.getData(i).compareTo(value) < 0) {
+					return contains();
+				}
 			}
-			current.insert(newEntry);
 		}
 	}
 	
-public void split(Node current) {
-        
-        Entries B,C;
-        Node parent, child2, child3;
-        int itemIndex;
-        
-        C = current.remove();
-        B = current.remove();
-        child2= current.removeChild(2);
-        child3 = current.removeChild(3);
-        
-        Node newRight = new Node();
-        
-        if (current == root) {
-            // special case create new root and connect
-            root = new Node();
-            parent = root;
-            root.addChild(0, current);
-        } else {
-            parent = current.getParent();    
-        }
-        
-        int numItems = parent.getNumEntries();
-        int insertedIndex = parent.insert(B);
-        
-        for(int i= numItems-1; i > insertedIndex; i--) {
-            Node tempChild = parent.removeChild(i);
-            parent.addChild(i+1, tempChild);
-        }
-        
-        parent.addChild(insertedIndex+1, newRight);
-        
-        newRight.insert(C);
-        newRight.addChild(0, child2);
-        newRight.addChild(1, child3);
-    }
-    
+	/**
+	 * helper method called in insert. Splits the node if the size is larger then maxChildren
+	 */
+	private void split(Node current) {
+		Node newNode = new Node(E[maxChildren], maxChildren/2);
+		//current. = maxChildren/2;
+		for(int i = 0; i < maxChildren/2; i++) {
+			newNode.children[i] = current.children[maxChildren/2 + i];
+		}
+	}
 
+	
+	/**
+	 * Helper method that checks weather or not the specific node is empty or not
+	 * @return
+	 */
+	public boolean isEmpty(){
+		return false;
+		
+	}
+	/**
+	 * Helper method that returns the size of the BTree
+	 * @return
+	 */
+	public int getNumNodes() {
+		return numNodes;
+	}
+	
+	
 }
